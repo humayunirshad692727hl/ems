@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1>VOte PAge</h1>
+<h1>{{y.title}}</h1>
+
+<form method="POST" action="/poll/{{y.id}}/">
+{%csrf_token%}
+{% for choices in y.all_choice%}
+    {{choices.text}}
+    <input type='radio' name="choice" value="{{choices.id}}">||
+
+{%endfor%}
+<button value="submit" value="vote">Vote</button>
+</form>
+
+
+
+
+
+
+
+<h3>Created by-{{y.created_by.first_name}}</h3><br>
+{%endblock%}

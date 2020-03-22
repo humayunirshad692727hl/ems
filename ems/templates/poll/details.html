@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1>{{y.title}}</h1>||
+<h3>Created by-{{y.created_by.first_name}}</h3><br>
+{%for i in c%}
+<h2>{{i.text}}--{{i.created_at}}<br></h2>
+{% for choices in y.all_choice%}
+    {{choices.text}}({{choices.votes}})
+{%endfor%}
+{%endfor%}
+    
+{%endblock%}

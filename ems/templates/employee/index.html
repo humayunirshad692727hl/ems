@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load poll_extras %}
+
+
+
+{% block content %}
+
+
+        <p>
+            {% if request.role == "Admin" %}
+            <div><a href="/employee/add/">{{'add employee'|upper:12}}</a></div>
+            {% endif %}
+            <h3>List of {{title}}</h3></div>
+            {% if request.role == 'Admin' %}
+            <a class="btn btn-success float-right" href="{%  url 'employee_add' %}">Add employee</a>
+            {% endif %}
+        </p>
+       
+        {% if users %}
+            <table >
+                
+                    <tr>
+                        <th>Name</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th scope="row">
+                            {{user.first_name}} {{user.last_name}}
+                            <span class="badge badge-default">{{user.email}}</span>
+                        </td>
+                        <td class="text-center">
+                            <a  href="{%  url 'employee_details' user.id %}">Details</a>
+                            <a  href="{%  url 'employee_edit' user.id %}">Edit</a>
+                            <a  href="{%  url 'employee_delete' user.id %}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        {% else %}
+            <p>There is no employee available.</p>
+        {% endif %}
+        </div>
+    </div>
+<div><h1> Recent Polls</h2>
+    {% recent_polls 1 name="HUAMYUN" as x  %}
+    {%if x%}
+    {%for i in x%}
+    <a href='{{i.id}}/details'>{{i.title}}</a><br>
+    {%endfor%}
+{%else%}
+<h2>There are no questions Available</h2>
+{% endif %}
+
+</div>
+{% endblock content %}

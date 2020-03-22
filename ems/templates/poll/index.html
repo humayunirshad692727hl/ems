@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+{%block content%}
+<h1>Honey is one of the greatest person of the world and he makes nice {{title}}</h1>
+<br>
+{%if x%}
+    {%for i in x%}
+    <a href='{{i.id}}/details'>{{i.title}}</a><br>
+    {%endfor%}
+{%else%}
+<h2>There are no questions Available</h2>
+{% endif %}
+{%endblock%}
